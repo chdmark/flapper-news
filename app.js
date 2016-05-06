@@ -7,6 +7,25 @@ app.factory('posts', [function(){
 	return o;
 }]);
 
+app.config([
+	'$stateProvider',
+	'$urlRouterProvider',
+	function($stateProvider, $urlRouterProvider){
+		$stateProvider
+		.state('home', {
+			url: '/home',
+			templateURL: '/home.html',
+			controller: 'MainCtrl'
+		});
+		.state('posts', {
+			url: '/posts/{id}',
+			templateURL: '/posts.html',
+			controller: 'PostsCtrl'
+		});
+
+		$urlRouterProvider.otherwise('home');
+	}]);
+
 app.controller('MainCtrl', [
 	'$scope',
 	'posts',
